@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEC — Style 3: Technical Engineering (mobile)</title>
+<link rel="preload" as="image" href="sec-assets/logo-sec-full.png">
+<link rel="preload" as="image" href="sec-assets/slide-3-power-plant.jpg">
+<style>
+  :root{
+    --brand:#027F01;
+    --brand-dark:#016401;
+    --accent:#FE5E08;
+    --accent-hot:#F95A09;
+    --gold:#FE9901;
+    --btn:#f7be68;
+    --ink:#333333;
+    --muted:#777777;
+    --nav:#999999;
+    --header:#F1F1F1;
+    --bg:#ffffff;
+    --line:#EEEEEE;
+    --bottom:#F5F5F5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Consolas','Courier New',ui-monospace,monospace;
+    background:var(--brand); color:var(--ink);
+  }
+  .phone{
+    max-width:420px; margin:24px auto; background:var(--bg);
+    overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,0.3);
+    border:8px solid #000;
+  }
+  header{
+    background:var(--header); display:flex; align-items:center; justify-content:space-between;
+    padding:14px 16px; border-bottom:3px solid var(--accent);
+  }
+  header img.logo{ height:30px; width:auto; display:block; object-fit:contain; }
+  .burger{
+    width:38px; height:38px; border:1px solid var(--accent); background:transparent;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:5px; cursor:pointer;
+  }
+  .burger span{ width:18px; height:2px; background:var(--accent); }
+  nav{
+    max-height:0; overflow:hidden; background:#EEEEEE;
+    transition:max-height 0.3s ease;
+  }
+  nav.open{ max-height:560px; }
+  nav ul{ list-style:none; margin:0; padding:0; }
+  nav > ul > li{ border-bottom:1px solid #e0e0e0; }
+  nav > ul > li > a{
+    display:block; padding:14px 18px; color:var(--nav); text-decoration:none;
+    font-size:13.5px; font-weight:bold; letter-spacing:0.5px; text-transform:uppercase;
+  }
+  nav > ul > li > a:hover{ color:#222222; }
+  nav ul ul{ background:#F5F5F5; }
+  nav ul ul li a{ font-weight:normal; padding-left:32px; font-size:12.5px; color:var(--accent); text-transform:none; }
+  .lang-row{ display:flex; gap:8px; padding:12px 18px; }
+  .lang-row img{ height:16px; }
+
+  .hero{ position:relative; border-bottom:3px solid var(--accent); }
+  .hero img{ width:100%; display:block; height:200px; object-fit:cover; filter:saturate(0.9) contrast(1.05); }
+  .hero-tag{
+    position:absolute; top:0; left:0; background:var(--accent); color:#fff;
+    font-size:11px; font-weight:bold; padding:5px 10px; letter-spacing:1px;
+  }
+  .hero-overlay{
+    position:absolute; inset:0; background:linear-gradient(0deg, rgba(2,127,1,0.9), rgba(2,127,1,0.12));
+    display:flex; align-items:flex-end; padding:16px;
+  }
+  .hero-overlay p{ color:#fff; font-size:15px; line-height:1.4; margin:0; font-family:-apple-system,sans-serif; }
+
+  section{ padding:20px 16px; border-bottom:1px solid var(--line); }
+  .eyebrow{
+    font-size:11px; color:var(--accent); letter-spacing:1.5px; text-transform:uppercase;
+    font-weight:bold; margin:0 0 8px;
+  }
+  .intro p{ font-size:14px; line-height:1.6; color:var(--muted); margin:0 0 16px; font-family:-apple-system,sans-serif; }
+  .btn-primary{
+    display:inline-block; background:var(--btn); color:#fff; text-decoration:none;
+    padding:13px 22px; font-weight:bold; font-size:13px; width:100%; text-align:center;
+    letter-spacing:0.5px; text-transform:uppercase; font-family:-apple-system,sans-serif;
+    border-left:4px solid var(--accent);
+  }
+
+  .spec-block{ margin-bottom:16px; }
+  .spec-block h3{
+    margin:0 0 10px; font-size:14px; color:var(--ink); text-transform:uppercase;
+    letter-spacing:1px; padding-bottom:8px; border-bottom:2px solid var(--accent);
+    font-family:-apple-system,sans-serif;
+  }
+  .spec-block ol{ margin:0; padding-left:0; list-style:none; counter-reset:item; }
+  .spec-block li{
+    font-size:13px; line-height:1.6; color:var(--muted); margin-bottom:10px;
+    padding-left:28px; position:relative; counter-increment:item; font-family:-apple-system,sans-serif;
+  }
+  .spec-block li:before{
+    content:counter(item, decimal-leading-zero); position:absolute; left:0; top:0;
+    font-size:11px; font-weight:bold; color:var(--accent);
+  }
+
+  .body-text p{ font-size:13.5px; line-height:1.65; color:var(--muted); font-family:-apple-system,sans-serif; }
+  .body-text ol{ padding-left:0; list-style:none; margin:12px 0; counter-reset:item2; }
+  .body-text li{
+    font-size:13px; line-height:1.6; color:var(--muted); margin-bottom:10px;
+    padding-left:28px; position:relative; counter-increment:item2; font-family:-apple-system,sans-serif;
+  }
+  .body-text li:before{
+    content:counter(item2, decimal-leading-zero); position:absolute; left:0; top:0;
+    font-size:11px; font-weight:bold; color:var(--accent);
+  }
+
+  h2.section-title{
+    font-size:14px; margin:0 0 14px; color:var(--ink); text-transform:uppercase;
+    letter-spacing:1px; font-family:-apple-system,sans-serif; font-weight:bold;
+    padding-bottom:8px; border-bottom:2px solid var(--accent);
+  }
+
+  .services{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .service{
+    background:#fff; padding:18px 10px; text-align:center;
+  }
+  .service img{ width:34px; height:34px; object-fit:contain; margin-bottom:8px; }
+  .service span{ font-size:11.5px; font-weight:bold; color:var(--ink); line-height:1.3; display:block; font-family:-apple-system,sans-serif; text-transform:uppercase; letter-spacing:0.3px; }
+
+  footer{ background:var(--brand); color:#F2F2F2; padding:26px 16px 30px; }
+  footer h3{ font-size:14px; margin:0 0 10px; text-transform:uppercase; letter-spacing:1px; font-family:-apple-system,sans-serif; color:#fff; }
+  footer p{ font-size:12.5px; line-height:1.6; color:#F2F2F2; margin:0 0 16px; font-family:-apple-system,sans-serif; }
+  .contact-row{
+    display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .contact-row img{ width:18px; height:18px; filter:brightness(0) invert(1); opacity:0.85; }
+  .contact-row a, .contact-row span{ color:var(--gold); font-size:12.5px; text-decoration:none; font-family:-apple-system,sans-serif; }
+  .social{ display:flex; gap:10px; margin-top:16px; }
+  .social a{
+    width:36px; height:36px; background:var(--brand-dark); border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .social img{ width:16px; height:16px; filter:brightness(0) invert(1); }
+  .copyright{ font-size:10.5px; color:#F2F2F2; margin-top:20px; text-align:center; font-family:-apple-system,sans-serif; }
+
+  .whatsapp-fab{
+    position:fixed; bottom:20px; right:20px; width:52px; height:52px;
+    background:#25D366; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 16px rgba(0,0,0,0.35); text-decoration:none; z-index:20;
+    border-left:3px solid var(--accent);
+  }
+  .whatsapp-fab svg{ width:26px; height:26px; }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <header>
+    <img class="logo" src="sec-assets/logo-sec-full.png" alt="Sustainable Energy Consulting logo" width="415" height="257" fetchpriority="high" decoding="async">
+    <button class="burger" onclick="document.getElementById('nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav id="nav">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Company</a></li>
+      <li><a href="#">Reference</a>
+        <ul>
+          <li><a href="#">Consulting</a></li>
+          <li><a href="#">Power System</a></li>
+          <li><a href="#">Thermal System</a></li>
+          <li><a href="#">Water Treatment</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Consulting</a>
+        <ul>
+          <li><a href="#">Audit</a></li>
+          <li><a href="#">Engineering</a></li>
+          <li><a href="#">Financing</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Solution</a>
+        <ul>
+          <li><a href="#">Power System</a></li>
+          <li><a href="#">Thermal System</a></li>
+          <li><a href="#">Water Treatment</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Link</a>
+        <ul>
+          <li><a href="#">OEM</a></li>
+          <li><a href="#">Media</a></li>
+          <li><a href="#">Energy</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="lang-row">
+      <img src="sec-assets/flag_us.gif" alt="English" width="20" height="12" loading="lazy" decoding="async">
+      <img src="sec-assets/flag-id.gif" alt="Indonesian" width="20" height="12" loading="lazy" decoding="async">
+    </div>
+  </nav>
+
+  <div class="hero">
+    <span class="hero-tag">SEC · ASIA</span>
+    <img src="sec-assets/slide-3-power-plant.jpg" alt="Power plant" width="840" height="338" fetchpriority="high" decoding="async">
+    <div class="hero-overlay">
+      <p>Insights in power, thermal and water systems</p>
+    </div>
+  </div>
+
+  <section class="intro">
+    <p class="eyebrow">Overview</p>
+    <p>Sustainable Energy Consulting is engaged to fulfill following engagements:</p>
+    <a class="btn-primary" href="#">Welcome to SEC website!</a>
+  </section>
+
+  <section>
+    <div class="spec-block">
+      <h3>Mission</h3>
+      <ol>
+        <li>Provide world-class energy efficient solutions from MEP design to installation and service</li>
+        <li>Prioritize the use of renewable sources through state-of-the art technologies</li>
+        <li>Manage and control energy loads, optimize self-consumption</li>
+        <li>Measure success in terms of sustainability and return-on-investment</li>
+      </ol>
+    </div>
+    <div class="spec-block">
+      <h3>Vision</h3>
+      <ol>
+        <li>Use of best business ethics and social practices, adapted to local cultures</li>
+        <li>Balance impact on the environment through best use of local resources</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="body-text">
+    <p>Sustainable Energy Consulting is an engineering company specializing in renewables and energy efficiency, and expert in premium quality thermal, electrical and water systems. SEC is a one-stop complete energy solutions, providing consulting services from energy audit and MEP design to project management till commissioning, for industrial, commercial and residential markets.</p>
+    <p style="font-weight:bold; color:var(--navy); margin-bottom:6px;">At SEC:</p>
+    <ol>
+      <li>We guide customers from MEP and system's design till project completion, through a choice of optimized solutions for any situation.</li>
+      <li>We work in close partnership with world-class OEMs, architects, project engineers, contractors and local suppliers.</li>
+      <li>We provide attractive financing solutions for large scale and community development projects.</li>
+      <li>Clients are backed by extensive component and service warranty.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="section-title">References</h2>
+  </section>
+  <div class="services">
+    <div class="service">
+      <img src="sec-assets/icon-expertise.jpg" alt="Expertise" width="80" height="46" loading="lazy" decoding="async">
+      <span>Consulting</span>
+    </div>
+    <div class="service">
+      <img src="sec-assets/icon-power-system.jpg" alt="Power System" width="80" height="46" loading="lazy" decoding="async">
+      <span>Power System</span>
+    </div>
+    <div class="service">
+      <img src="sec-assets/icon-thermal-systems.jpg" alt="Thermal System" width="80" height="46" loading="lazy" decoding="async">
+      <span>Thermal System</span>
+    </div>
+    <div class="service">
+      <img src="sec-assets/icon-water-treatment.jpg" alt="Water Treatment" width="80" height="46" loading="lazy" decoding="async">
+      <span>Water Treatment</span>
+    </div>
+  </div>
+
+  <footer>
+    <h3>Sustainable Energy Consulting</h3>
+    <p>Jl. Dukuh Indah 14B, Banjar Semer, Kerobokan, 80361, Bali, Indonesia</p>
+
+    <div class="contact-row">
+      <img src="sec-assets/icon-phone.jpg" alt="Phone" width="25" height="20" loading="lazy" decoding="async">
+      <a href="tel:+6281353405082">+62 81 353 405 082</a>
+    </div>
+    <div class="contact-row">
+      <img src="sec-assets/icon-email.jpg" alt="Email" width="25" height="20" loading="lazy" decoding="async">
+      <a href="mailto:info@sustainable-energy-consulting.com">info@sustainable-energy-consulting.com</a>
+    </div>
+    <div class="contact-row">
+      <img src="sec-assets/icon-skype.jpg" alt="Skype" width="25" height="20" loading="lazy" decoding="async">
+      <a href="skype:fpbali?call">Contact us on Skype</a>
+    </div>
+
+    <div class="social">
+      <a href="#"><img src="sec-assets/icon-fb.jpg" alt="Facebook" width="32" height="34" loading="lazy" decoding="async"></a>
+      <a href="#"><img src="sec-assets/icon-gplus.jpg" alt="Google Plus" width="32" height="34" loading="lazy" decoding="async"></a>
+      <a href="#"><img src="sec-assets/icon-linkedin.jpg" alt="LinkedIn" width="32" height="34" loading="lazy" decoding="async"></a>
+    </div>
+
+    <p class="copyright">©2007-2022 PT. MATAHARI ABADI SEJAHTERA, Indonesia</p>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/6281353405082" target="_blank" rel="noopener" aria-label="WhatsApp us">
+    <svg viewBox="0 0 32 32" fill="#fff"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.703 4.607 1.912 6.47L4 29l7.72-1.876A11.94 11.94 0 0016.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm6.997 16.847c-.297.836-1.474 1.53-2.403 1.729-.639.137-1.474.246-4.283-.919-3.594-1.489-5.906-5.135-6.088-5.373-.174-.238-1.454-1.936-1.454-3.694 0-1.758.907-2.622 1.229-2.982.32-.36.7-.45.933-.45.233 0 .467.002.67.012.215.01.503-.082.786.6.297.717 1.008 2.474 1.096 2.654.088.18.146.393.03.63-.117.238-.176.386-.35.594-.174.208-.365.464-.522.622-.174.174-.356.362-.153.712.204.35.907 1.497 1.947 2.425 1.338 1.194 2.466 1.565 2.815 1.74.35.174.554.146.758-.09.204-.238.87-1.016 1.104-1.365.233-.35.467-.29.786-.174.32.116 2.03.958 2.378 1.132.35.174.582.262.67.408.088.146.088.837-.21 1.673z"/></svg>
+  </a>
+
+</div>
+</body>
+</html>
