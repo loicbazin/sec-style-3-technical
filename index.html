@@ -131,14 +131,15 @@
   .contact-row{
     display:flex; align-items:center; gap:12px; padding:12px 0; border-top:1px solid rgba(255,255,255,0.1);
   }
-  .contact-row img{ width:18px; height:18px; filter:brightness(0) invert(1); opacity:0.85; }
+  .contact-row img{ width:18px; height:18px; opacity:0.95; }
   .contact-row a, .contact-row span{ color:var(--gold); font-size:12.5px; text-decoration:none; font-family:-apple-system,sans-serif; }
-  .social{ display:flex; gap:10px; margin-top:16px; }
+  .social{ display:flex; align-items:center; gap:10px; margin-top:16px; flex-wrap:wrap; }
+  .social-label{ color:#fff; font-size:12.5px; font-weight:bold; font-family:-apple-system,sans-serif; margin-right:2px; }
   .social a{
     width:36px; height:36px; background:var(--brand-dark); border:1px solid var(--gold);
     display:flex; align-items:center; justify-content:center;
   }
-  .social img{ width:16px; height:16px; filter:brightness(0) invert(1); }
+  .social img{ width:20px; height:21px; object-fit:cover; }
   .copyright{ font-size:10.5px; color:#F2F2F2; margin-top:20px; text-align:center; font-family:-apple-system,sans-serif; }
 
   .whatsapp-fab{
@@ -285,6 +286,7 @@
     </div>
 
     <div class="social">
+      <span class="social-label">Follow Us On:</span>
       <a href="#"><img src="sec-assets/icon-fb.jpg" alt="Facebook" width="32" height="34" loading="lazy" decoding="async"></a>
       <a href="#"><img src="sec-assets/icon-gplus.jpg" alt="Google Plus" width="32" height="34" loading="lazy" decoding="async"></a>
       <a href="#"><img src="sec-assets/icon-linkedin.jpg" alt="LinkedIn" width="32" height="34" loading="lazy" decoding="async"></a>
